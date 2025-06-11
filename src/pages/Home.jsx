@@ -103,14 +103,16 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative z-10 flex items-center justify-center"
           >            
-            {/* Profile Image with circular background */}            <div className="relative w-full max-w-md mx-auto">              {/* Large circle background */}              <motion.div 
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 dark:from-gray-700 dark:via-gray-800 dark:to-gray-850 rounded-full -z-10 shadow-inner shadow-primary-500/10"
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.2 }}
-              ></motion.div>
-                {/* Profile image container */}
-              <div className="relative rounded-full overflow-hidden shadow-2xl shadow-primary-500/30 border-4 border-gray-100 dark:border-gray-800 aspect-square w-[92%] mx-auto">
+            {/* Profile Image with circular background */}            <div className="relative w-full max-w-md mx-auto">
+              {/* Profile image container with background circle */}
+              <div className="relative rounded-full overflow-hidden shadow-2xl shadow-primary-500/30 border-4 border-gray-100 dark:border-gray-800 aspect-square">
+                {/* Background circle - positioned behind the profile image */}
+                <motion.div 
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 dark:from-gray-700 dark:via-gray-800 dark:to-gray-850 rounded-full -z-10 shadow-inner shadow-primary-500/10"
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 1.2 }}
+                ></motion.div>
                 <motion.img 
                   src="/assets/images/profile.png"
                   alt="Damilare Oyedele"
@@ -122,17 +124,18 @@ const Home = () => {
                   {/* Subtle overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-500/120 to-transparent opacity-40"></div>
               </div>
+                {/* Floating Icons */}
+              <FloatingIcons />
               
-              {/* Floating Icons */}
-              <FloatingIcons />              {/* Decorative element */}
+              {/* Decorative element */}
               <motion.div
-                className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-500 rounded-full opacity-50"
+                className="absolute -bottom-3 -left-3 w-12 h-12 bg-primary-500 rounded-full opacity-50"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
               ></motion.div>
               <motion.div
-                className="absolute -top-4 -right-4 w-20 h-20 bg-primary-400 rounded-full opacity-30"
+                className="absolute -top-3 -right-3 w-14 h-14 bg-primary-400 rounded-full opacity-30"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 1 }}
