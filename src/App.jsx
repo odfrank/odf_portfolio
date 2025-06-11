@@ -3,6 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Home from './pages/Home';
+import About from './pages/About';
+import Skills from './pages/Skills';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   // Set default theme based on user preference
@@ -19,11 +22,13 @@ function App() {
     <ThemeProvider>
       <Router>
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-          <Header />
-          <main>
+          <Header />          <main>
             <Home />
+            <About />
+            <Skills />
             {/* Other page components will go here */}
           </main>
+          <ScrollToTop />
         </div>
       </Router>
     </ThemeProvider>

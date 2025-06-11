@@ -3,12 +3,54 @@ import { motion } from 'framer-motion';
 
 const TechStack = () => {
   const technologies = [
-    { name: 'React', icon: '⚛️', position: { top: '15%', right: '15%' } },
-    { name: 'Node.js', icon: '🟢', position: { top: '25%', left: '20%' } },
-    { name: 'TypeScript', icon: 'TS', position: { bottom: '30%', right: '10%' } },
-    { name: 'JavaScript', icon: 'JS', position: { top: '45%', left: '15%' } },
-    { name: 'Git', icon: '🔧', position: { bottom: '25%', left: '25%' } },
-    { name: 'CSS3', icon: '🎨', position: { top: '35%', right: '25%' } }
+    { 
+      name: 'React', 
+      icon: '/assets/images/icons/react.svg', 
+      position: { top: '15%', right: '15%' },
+      bgColor: 'bg-blue-50 dark:bg-blue-900/30'
+    },
+    { 
+      name: 'JavaScript', 
+      icon: '/assets/images/icons/javascript.svg', 
+      position: { top: '25%', left: '20%' },
+      bgColor: 'bg-yellow-50 dark:bg-yellow-900/30'
+    },
+    { 
+      name: 'TypeScript', 
+      icon: '/assets/images/icons/typescript.svg', 
+      position: { bottom: '30%', right: '10%' },
+      bgColor: 'bg-blue-50 dark:bg-blue-900/30'
+    },
+    { 
+      name: 'C#', 
+      icon: '/assets/images/icons/csharp.svg', 
+      position: { top: '45%', left: '15%' },
+      bgColor: 'bg-purple-50 dark:bg-purple-900/30'
+    },
+    { 
+      name: 'Git', 
+      icon: '/assets/images/icons/git.svg', 
+      position: { bottom: '25%', left: '25%' },
+      bgColor: 'bg-red-50 dark:bg-red-900/30'
+    },
+    { 
+      name: 'HTML5', 
+      icon: '/assets/images/icons/html5.svg', 
+      position: { top: '35%', right: '25%' },
+      bgColor: 'bg-orange-50 dark:bg-orange-900/30'
+    },
+    { 
+      name: 'Azure', 
+      icon: '/assets/images/icons/azure.svg', 
+      position: { bottom: '15%', right: '30%' },
+      bgColor: 'bg-blue-50 dark:bg-blue-900/30'
+    },
+    { 
+      name: 'ASP.NET', 
+      icon: '/assets/images/icons/aspnet.svg', 
+      position: { top: '10%', left: '35%' },
+      bgColor: 'bg-purple-50 dark:bg-purple-900/30'
+    }
   ];
 
   return (
@@ -16,7 +58,7 @@ const TechStack = () => {
       {technologies.map((tech, index) => (
         <motion.div
           key={tech.name}
-          className="absolute flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/10 dark:bg-gray-800/30 backdrop-blur-sm rounded-full border border-white/20 dark:border-gray-700/50"
+          className={`absolute flex items-center justify-center w-14 h-14 md:w-16 md:h-16 ${tech.bgColor} backdrop-blur-sm rounded-full border border-white/20 dark:border-gray-700/50 shadow-lg`}
           style={tech.position}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ 
@@ -28,16 +70,21 @@ const TechStack = () => {
             delay: index * 0.2,
             duration: 0.8,
             y: {
-              duration: 3,
+              duration: 3 + Math.random() * 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
+              repeatType: "reverse"
             }
           }}
-          whileHover={{ scale: 1.1 }}
         >
-          <span className="text-lg md:text-xl font-bold text-primary-600 dark:text-primary-400">
-            {tech.icon}
-          </span>
+          <img 
+            src={tech.icon} 
+            alt={tech.name} 
+            className="w-8 h-8 md:w-10 md:h-10 object-contain"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
         </motion.div>
       ))}
     </div>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Download, ExternalLink } from 'lucide-react';
 import FloatingIcons from '../components/FloatingIcons';
 import SocialIcons from '../components/SocialIcons';
+import SectionDivider from '../components/SectionDivider';
 
 const Home = () => {
   const containerVariants = {
@@ -142,10 +143,14 @@ const Home = () => {
               ></motion.div>
             </div>
           </motion.div>
-        </div>
-      </div>
+        </div>      </div>
         {/* Background gradient */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent"></div>
+      
+      {/* Section divider */}
+      <div className="absolute bottom-0 w-full">
+        <SectionDivider variant="wave" />
+      </div>
     </section>
   );
 };
