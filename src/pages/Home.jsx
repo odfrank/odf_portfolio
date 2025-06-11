@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, ExternalLink } from 'lucide-react';
-import TechStack from '../components/TechStack';
+import FloatingIcons from '../components/FloatingIcons';
+import SocialIcons from '../components/SocialIcons';
 
 const Home = () => {
   const containerVariants = {
@@ -25,9 +26,9 @@ const Home = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden">
-      {/* Background Tech Stack */}
-      <TechStack />
+    <section id="home" className="min-h-screen relative overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      {/* Social Icons */}
+      <SocialIcons />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
@@ -41,7 +42,7 @@ const Home = () => {
             <motion.div variants={itemVariants} className="space-y-4">
               <motion.p 
                 variants={itemVariants}
-                className="text-primary-600 dark:text-primary-400 font-medium text-lg"
+                className="text-primary-500 dark:text-primary-400 font-medium text-lg"
               >
                 — Introducing
               </motion.p>
@@ -53,7 +54,7 @@ const Home = () => {
                 Hello
                 <br />
                 I'm{' '}
-                <span className="text-primary-600 dark:text-primary-400">
+                <span className="text-primary-500 dark:text-primary-400">
                   Damilare
                 </span>{' '}
                 Oyedele
@@ -74,8 +75,9 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
               <motion.a
-                href="#"
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors duration-300"
+                href="/assets/resume.pdf"
+                download
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -84,52 +86,61 @@ const Home = () => {
               </motion.a>
               
               <motion.a
-                href="#portfolio"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400 font-semibold rounded-lg hover:bg-primary-600 hover:text-white dark:hover:bg-primary-400 dark:hover:text-gray-900 transition-all duration-300"
+                href="#projects"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-500 text-primary-500 dark:text-primary-400 dark:border-primary-400 font-semibold rounded-lg hover:bg-primary-500 hover:text-white dark:hover:bg-primary-400 dark:hover:text-gray-900 transition-all duration-300 shadow-lg shadow-transparent hover:shadow-primary-500/20"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <ExternalLink className="mr-2" size={20} />
-                Demo Projects
+                View Project Demos
               </motion.a>
             </motion.div>
           </motion.div>
-
-          {/* Right Content - Profile Image */}
+          
+          {/* Right Content - Profile Image with Floating Icons */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="relative flex justify-center lg:justify-end"
-          >
-            <div className="relative">
-              <motion.div
-                className="w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden border-4 border-primary-600/20 shadow-2xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face&auto=format&q=80"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative z-10 flex items-center justify-center"
+          >            {/* Profile Image */}
+            <div className="relative w-full max-w-md mx-auto">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary-500/20 border-4 border-gray-100 dark:border-gray-800">
+                <motion.img 
+                  src="/assets/images/profile.jpg"
                   alt="Damilare Oyedele"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-cover"
+                  initial={{ filter: 'blur(10px)' }}
+                  animate={{ filter: 'blur(0px)' }}
+                  transition={{ duration: 1, delay: 0.5 }}
                 />
-              </motion.div>
+                
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-500/40 to-transparent opacity-70"></div>
+              </div>
               
-              {/* Floating Elements */}
+              {/* Floating Icons */}
+              <FloatingIcons />
+              
+              {/* Decorative element */}
               <motion.div
-                className="absolute -top-4 -right-4 w-8 h-8 bg-primary-600 rounded-full"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
+                className="absolute -bottom-5 -left-5 w-20 h-20 bg-primary-500 rounded-full opacity-50"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              ></motion.div>
               <motion.div
-                className="absolute -bottom-8 -left-8 w-6 h-6 bg-blue-500 rounded-full"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              />
+                className="absolute -top-5 -right-5 w-24 h-24 bg-primary-400 rounded-full opacity-30"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5, delay: 1 }}
+              ></motion.div>
             </div>
           </motion.div>
         </div>
       </div>
+        {/* Background gradient */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent"></div>
     </section>
   );
 };

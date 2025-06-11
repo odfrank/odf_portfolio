@@ -1,0 +1,16 @@
+// .vscode/settings.json
+{
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true
+  },
+  "search.exclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true
+  },
+  "github.copilot.advanced": {
+    "inlineSuggest.enable": true,
+    "suggestionDelayMs": 200
+  }
+}
