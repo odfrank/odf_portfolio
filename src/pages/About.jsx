@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import SectionDivider from '../components/SectionDivider';
-import TechStack from '../components/TechStack';
 
 const About = () => {
   const controls = useAnimation();
@@ -57,7 +56,6 @@ const About = () => {
             <div className="h-1 w-20 bg-primary-500 dark:bg-primary-400 rounded-full"></div>
           </motion.div>          <div className="grid md:grid-cols-3 gap-10 items-center">
             <motion.div variants={itemVariants} className="md:col-span-2 space-y-6 relative">
-              <TechStack />
               <motion.p 
                 variants={itemVariants}
                 className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
