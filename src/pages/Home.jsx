@@ -96,41 +96,43 @@ const Home = () => {
               </motion.a>
             </motion.div>
           </motion.div>
-          
-          {/* Right Content - Profile Image with Floating Icons */}
+            {/* Right Content - Profile Image with Floating Icons */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative z-10 flex items-center justify-center"
-          >            {/* Profile Image */}
-            <div className="relative w-full max-w-md mx-auto">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary-500/20 border-4 border-gray-100 dark:border-gray-800">
+          >            
+            {/* Profile Image with circular background */}            <div className="relative w-full max-w-md mx-auto">              {/* Large circle background */}              <motion.div 
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 dark:from-gray-700 dark:via-gray-800 dark:to-gray-850 rounded-full -z-10 shadow-inner shadow-primary-500/10"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.2 }}
+              ></motion.div>
+                {/* Profile image container */}
+              <div className="relative rounded-full overflow-hidden shadow-2xl shadow-primary-500/30 border-4 border-gray-100 dark:border-gray-800 aspect-square w-[92%] mx-auto">
                 <motion.img 
-                  src="/assets/images/profile.jpg"
+                  src="/assets/images/profile.png"
                   alt="Damilare Oyedele"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-full object-cover"
                   initial={{ filter: 'blur(10px)' }}
                   animate={{ filter: 'blur(0px)' }}
                   transition={{ duration: 1, delay: 0.5 }}
                 />
-                
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-500/40 to-transparent opacity-70"></div>
+                  {/* Subtle overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-500/120 to-transparent opacity-40"></div>
               </div>
               
               {/* Floating Icons */}
-              <FloatingIcons />
-              
-              {/* Decorative element */}
+              <FloatingIcons />              {/* Decorative element */}
               <motion.div
-                className="absolute -bottom-5 -left-5 w-20 h-20 bg-primary-500 rounded-full opacity-50"
+                className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-500 rounded-full opacity-50"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
               ></motion.div>
               <motion.div
-                className="absolute -top-5 -right-5 w-24 h-24 bg-primary-400 rounded-full opacity-30"
+                className="absolute -top-4 -right-4 w-20 h-20 bg-primary-400 rounded-full opacity-30"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 1 }}

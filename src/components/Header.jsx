@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTheme } from '../contexts/ThemeContext';
-import { Sun, Moon, Menu, X, Linkedin, Github, Youtube } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
-  const { isDark, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const navItems = [
     { name: 'Home', href: '#home', active: true },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Contact', href: '#contact' }
-  ];
-
-  const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Youtube, href: '#', label: 'YouTube' }
   ];
 
   return (
@@ -38,34 +29,8 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
-          </nav>
-
-          {/* Social Links & Theme Toggle */}
+          </nav>          {/* Mobile Menu Button */}
           <div className="flex items-center space-x-4">
-            {/* Social Links */}
-            <div className="hidden md:flex items-center space-x-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="p-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon size={20} />
-                </a>
-              ))}
-            </div>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-gray-600 dark:text-gray-300"
@@ -91,18 +56,7 @@ const Header = () => {
               >
                 {item.name}
               </a>
-            ))}
-            <div className="flex items-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700 mt-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="p-2 text-gray-600 dark:text-gray-300"
-                >
-                  <social.icon size={20} />
-                </a>
-              ))}
-            </div>
+            ))}            {/* Navigation links in mobile menu */}
           </motion.div>
         )}
       </div>
