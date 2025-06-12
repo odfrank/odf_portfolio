@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
     const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -17,11 +18,6 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    // Check for dark mode preference
-    if (document.documentElement.classList.contains('dark')) {
-      setIsDarkMode(true);
-    }
-    
     // Track scroll position for header styling
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -48,17 +44,6 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [navItems]);
-  
-  const toggleDarkMode = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-    }
-    setIsDarkMode(!isDarkMode);
-  };
 
   return (
     <motion.header 
@@ -107,10 +92,9 @@ const Header = () => {
           </nav>
           
           {/* Theme toggle and mobile menu */}
-          <div className="flex items-center space-x-4">
-            {/* Theme toggle button */}
+          <div className="flex items-center space-x-4">            {/* Theme toggle button */}
             <motion.button
-              onClick={toggleDarkMode}
+              onClick={toggleTheme}
               className={`p-2 rounded-full ${
                 scrolled 
                   ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
@@ -119,7 +103,7 @@ const Header = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
 
             {/* Mobile menu button */}
