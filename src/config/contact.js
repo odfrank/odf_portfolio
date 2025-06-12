@@ -1,0 +1,66 @@
+// Contact configuration - update with your actual details
+export const contactConfig = {
+  // Form submission endpoint (Formspree, EmailJS, or custom backend)
+  formspreeEndpoint: "https://formspree.io/f/your-form-id", // Replace with your Formspree form ID
+
+  // EmailJS configuration (alternative to Formspree)
+  emailJs: {
+    serviceId: "your_service_id",
+    templateId: "your_template_id",
+    publicKey: "your_public_key",
+  },
+
+  // Contact information
+  email: "oyedeledamilaref@yahoo.com",
+  linkedin: "https://linkedin.com/in/damilare-francis-oyedele/",
+  github: "https://github.com/odfrank",
+  portfolio: "https://oyedeledamilaref.com",
+
+  // Optional additional contact methods
+  phone: null, // "+1 (555) 123-4567"
+  location: "Edmonton, Canada",
+
+  // Social media links (optional)
+  twitter: null,
+  instagram: null,
+
+  // Contact availability
+  availability: {
+    status: "Open to opportunities",
+    message:
+      "Currently available for freelance projects and full-time opportunities",
+  },
+};
+
+// Form validation rules
+export const validationRules = {
+  name: {
+    required: "Name is required",
+    minLength: {
+      value: 2,
+      message: "Name must be at least 2 characters",
+    },
+    maxLength: {
+      value: 50,
+      message: "Name must be less than 50 characters",
+    },
+  },
+  email: {
+    required: "Email is required",
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      message: "Please enter a valid email address",
+    },
+  },
+  message: {
+    required: "Message is required",
+    minLength: {
+      value: 10,
+      message: "Message must be at least 10 characters",
+    },
+    maxLength: {
+      value: 1000,
+      message: "Message must be less than 1000 characters",
+    },
+  },
+};

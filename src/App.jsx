@@ -7,6 +7,7 @@ import About from './pages/About';
 import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Portfolio from './pages/Portfolio';
+import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
             <Skills />
             <Experience />
             <Portfolio />
-            {/* Other page components will go here */}
+            <Contact />
           </main>
           <ScrollToTop />
         </div>
