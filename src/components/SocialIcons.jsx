@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Linkedin, Github, Youtube } from 'lucide-react';
 
-const SocialIcons = () => {
+const SocialIcons = ({ isMobile = false }) => {
   const socialLinks = [
     { 
       Icon: Linkedin, 
@@ -56,16 +56,56 @@ const SocialIcons = () => {
       y: -2,
       transition: { duration: 0.2 }
     }
-  };  return (
+  };  // Mobile layout
+  if (isMobile) {
+    return (
+      <motion.div 
+        className="flex justify-center space-x-6 mt-1 mb-1 px-4"
+        variants={containerVariants}
+        initial="initial"
+        animate="animate"
+      >
+        {socialLinks.map(({ Icon, href, label, color, bgColor }, index) => (
+          <motion.a
+            key={label}
+            href={href}
+            aria-label={label}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`
+              flex items-center justify-center w-12 h-12 
+              rounded-full 
+              bg-white/80 dark:bg-gray-800/80 
+              backdrop-blur-sm 
+              border border-gray-200/50 dark:border-gray-700/50
+              text-gray-600 dark:text-gray-400 
+              ${color} ${bgColor}
+              shadow-lg active:shadow-xl 
+              transition-all duration-300
+              group
+            `}
+            variants={iconVariants}
+            whileHover="hover"
+            whileTap={{ scale: 0.9 }}
+          >
+            <Icon size={20} className="transition-transform duration-300 group-hover:scale-110" />
+          </motion.a>
+        ))}
+      </motion.div>
+    );
+  }
+
+  // Desktop/Tablet sidebar layout
+  return (
     <motion.div 
-      className="hidden lg:flex fixed left-40 top-[30%] -translate-y-1/2 z-40 flex-col space-y-4"
+      className="hidden md:flex fixed left-8 xl:left-12 top-[35%] -translate-y-1/2 z-40 flex-col space-y-4"
       variants={containerVariants}
       initial="initial"
       animate="animate"
     >
       {/* Decorative Line Above */}
       <motion.div 
-        className="w-px h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-auto"
+        className="w-px h-12 lg:h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-auto"
         initial={{ opacity: 0, scaleY: 0 }}
         animate={{ opacity: 1, scaleY: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
@@ -80,7 +120,7 @@ const SocialIcons = () => {
           target="_blank"
           rel="noopener noreferrer"
           className={`
-            flex items-center justify-center w-12 h-12 
+            flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 
             rounded-full 
             bg-white/80 dark:bg-gray-800/80 
             backdrop-blur-sm 
@@ -95,13 +135,13 @@ const SocialIcons = () => {
           whileHover="hover"
           whileTap={{ scale: 0.9 }}
         >
-          <Icon size={20} className="transition-transform duration-300 group-hover:scale-110" />
+          <Icon size={18} className="lg:w-5 lg:h-5 transition-transform duration-300 group-hover:scale-110" />
         </motion.a>
       ))}
 
       {/* Decorative Line Below */}
       <motion.div 
-        className="w-px h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-auto"
+        className="w-px h-12 lg:h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-auto"
         initial={{ opacity: 0, scaleY: 0 }}
         animate={{ opacity: 1, scaleY: 1 }}
         transition={{ delay: 1.8, duration: 0.8 }}

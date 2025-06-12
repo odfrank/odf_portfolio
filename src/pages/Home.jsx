@@ -60,9 +60,7 @@ const Home = () => {
                 </span>{' '}
                 Oyedele
               </motion.h1>
-            </motion.div>
-
-            <motion.p 
+            </motion.div>            <motion.p 
               variants={itemVariants}
               className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl"
             >
@@ -71,6 +69,13 @@ const Home = () => {
               solutions, and APIs.
             </motion.p>
 
+            {/* Mobile Social Icons - Only visible on small screens */}
+            <motion.div 
+              variants={itemVariants}
+              className="md:hidden"
+            >
+              <SocialIcons isMobile={true} />
+            </motion.div>
             <motion.div 
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 pt-4"
@@ -93,8 +98,7 @@ const Home = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <ExternalLink className="mr-2" size={20} />
-                View Project Demos
-              </motion.a>
+                View Project Demos              </motion.a>
             </motion.div>
           </motion.div>
             {/* Right Content - Profile Image with Floating Icons */}
