@@ -3,11 +3,12 @@ export const contactConfig = {
   // Form submission endpoint (Formspree, EmailJS, or custom backend)
   formspreeEndpoint: "https://formspree.io/f/your-form-id", // Replace with your Formspree form ID
 
-  // EmailJS configuration (alternative to Formspree)
+  // EmailJS configuration (recommended for this setup)
   emailJs: {
-    serviceId: "your_service_id",
-    templateId: "your_template_id",
-    publicKey: "your_public_key",
+    serviceId: "service_portfolio", // Public service ID for portfolio
+    templateId: "template_portfolio", // Public template ID
+    publicKey: "portfolio_public_key", // Public key for portfolio
+    toEmail: "connect@oyedeledamilaref.com", // Your email where messages will be sent
   },
   // Contact information
   email: "connect@oyedeledamilaref.com",

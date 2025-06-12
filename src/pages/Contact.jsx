@@ -80,13 +80,19 @@ const ContactSection = () => {
       value: 'Q&A Contributions',
       href: contactConfig.stackoverflow,
       color: 'text-orange-600 dark:text-orange-400'
-    },
-    {
+    },    {
       icon: Package,
       label: 'Docker Hub',
       value: 'Container Registry',
       href: contactConfig.dockerhub,
       color: 'text-blue-500 dark:text-blue-300'
+    },
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: contactConfig.location,
+      href: null,
+      color: 'text-green-600 dark:text-green-400'
     }
   ];
 
@@ -307,13 +313,13 @@ const ContactSection = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-4"
-                  >
-                    {submitStatus === 'success' && (
+                  >                    {submitStatus === 'success' && (
                       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
-                        <span className="text-green-700 dark:text-green-300 font-medium">
-                          Message sent successfully! I'll get back to you soon.
-                        </span>
+                        <div className="text-green-700 dark:text-green-300">
+                          <p className="font-medium">Message ready to send!</p>
+                          <p className="text-sm mt-1">Your email client should open automatically. If it doesn't, please email me directly at connect@oyedeledamilaref.com</p>
+                        </div>
                       </div>
                     )}
                     {submitStatus === 'error' && (

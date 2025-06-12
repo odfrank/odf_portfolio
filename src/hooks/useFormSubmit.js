@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { contactConfig } from "../config/contact";
 
 export const useFormSubmit = () => {
@@ -10,31 +11,67 @@ export const useFormSubmit = () => {
     setSubmitStatus(null);
 
     try {
-      // Using Formspree for form submission
-      const response = await fetch(contactConfig.formspreeEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
+      // First attempt: Try EmailJS if properly configured
+      if (
+        contactConfig.emailJs.serviceId !== "service_portfolio" &&
+        contactConfig.emailJs.templateId !== "template_portfolio" &&
+        contactConfig.emailJs.publicKey !== "portfolio_public_key"
+      ) {
+        // EmailJS is properly configured, use it
+        const templateParams = {
+          from_name: data.name,
+          from_email: data.email,
           message: data.message,
-          _replyto: data.email,
-          _subject: `Portfolio Contact from ${data.name}`,
-        }),
-      });
+          to_email: contactConfig.emailJs.toEmail,
+          subject: `Portfolio Contact from ${data.name}`,
+        };
 
-      if (response.ok) {
+        await emailjs.send(
+          contactConfig.emailJs.serviceId,
+          contactConfig.emailJs.templateId,
+          templateParams,
+          contactConfig.emailJs.publicKey
+        );
+
         setSubmitStatus("success");
         return { success: true };
       } else {
-        throw new Error("Form submission failed");
+        // EmailJS not configured, use mailto fallback
+        const subject = encodeURIComponent(
+          `Portfolio Contact from ${data.name}`
+        );
+        const body = encodeURIComponent(
+          `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+        );
+        const mailtoLink = `mailto:${contactConfig.emailJs.toEmail}?subject=${subject}&body=${body}`;
+
+        // Open the user's default email client
+        window.open(mailtoLink, "_blank");
+
+        setSubmitStatus("success");
+        return { success: true };
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      setSubmitStatus("error");
-      return { success: false, error: error.message };
+
+      // Fallback to mailto if EmailJS fails
+      try {
+        const subject = encodeURIComponent(
+          `Portfolio Contact from ${data.name}`
+        );
+        const body = encodeURIComponent(
+          `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+        );
+        const mailtoLink = `mailto:${contactConfig.emailJs.toEmail}?subject=${subject}&body=${body}`;
+
+        window.open(mailtoLink, "_blank");
+        setSubmitStatus("success");
+        return { success: true };
+      } catch (mailtoError) {
+        console.error("Mailto fallback error:", mailtoError);
+        setSubmitStatus("error");
+        return { success: false, error: error.message };
+      }
     } finally {
       setIsSubmitting(false);
     }
