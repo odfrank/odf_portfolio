@@ -66,10 +66,10 @@ const Header = () => {
           >
             <a href="#home" className="text-xl font-bold flex items-center space-x-2">
               <span className="text-2xl font-extrabold bg-gradient-to-r from-primary-500 to-primary-700 dark:from-primary-400 dark:to-primary-600 text-transparent bg-clip-text">
-                DO
+                ODF
               </span>
               <span className={`ml-2 transition-colors duration-300 ${scrolled ? 'text-gray-900 dark:text-white' : 'text-gray-800 dark:text-gray-100'}`}>
-                Damilare Oyedele
+                Codes
               </span>
             </a>
           </motion.div>

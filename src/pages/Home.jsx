@@ -64,9 +64,9 @@ const Home = () => {
               variants={itemVariants}
               className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl"
             >
-              I'm a Senior Software Developer with over 5 years of experience 
-              building high-quality web applications, enterprise software 
-              solutions, and APIs.
+              A Senior Software Developer with 9+ years of experience designing and developing 
+              high-impact applications across several industries. I am a great team player with a mission to contribute clean, 
+              maintainable, and business-driven code to help achieve organizational goals. Thank you.
             </motion.p>
 
             {/* Mobile Social Icons - Only visible on small screens */}
