@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import About from './pages/About';
 import Skills from './pages/Skills';
+import Experience from './pages/Experience';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Home />
             <About />
             <Skills />
+            <Experience />
             {/* Other page components will go here */}
           </main>
           <ScrollToTop />

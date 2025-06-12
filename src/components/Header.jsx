@@ -7,11 +7,11 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  
-  const navItems = [
+    const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Contact', href: '#contact' }
   ];
