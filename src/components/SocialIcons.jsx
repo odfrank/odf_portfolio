@@ -56,10 +56,9 @@ const SocialIcons = () => {
       y: -2,
       transition: { duration: 0.2 }
     }
-  };
-  return (
+  };  return (
     <motion.div 
-      className="hidden lg:flex fixed left-6 top-1/2 -translate-y-1/2 z-40 flex-col space-y-4"
+      className="hidden lg:flex fixed left-40 top-[30%] -translate-y-1/2 z-40 flex-col space-y-4"
       variants={containerVariants}
       initial="initial"
       animate="animate"
