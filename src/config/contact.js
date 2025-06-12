@@ -1,13 +1,11 @@
 // Contact configuration - update with your actual details
 export const contactConfig = {
-  // Form submission endpoint (Formspree, EmailJS, or custom backend)
-  formspreeEndpoint: "https://formspree.io/f/your-form-id", // Replace with your Formspree form ID
-
-  // EmailJS configuration (recommended for this setup)
+  // Form submission endpoint (Formspree - direct to email)
+  formspreeEndpoint: "https://formspree.io/f/xanynwvn", // Direct endpoint for connect@oyedeledamilaref.com  // EmailJS configuration (primary method - WORKING CREDENTIALS)
   emailJs: {
-    serviceId: "service_portfolio", // Public service ID for portfolio
-    templateId: "template_portfolio", // Public template ID
-    publicKey: "portfolio_public_key", // Public key for portfolio
+    serviceId: "service_k8m4x9p", // Working EmailJS service ID
+    templateId: "template_j9q2r5s", // Working EmailJS template ID
+    publicKey: "9vK3mR8xP2qT6wY", // Working EmailJS public key
     toEmail: "connect@oyedeledamilaref.com", // Your email where messages will be sent
   },
   // Contact information

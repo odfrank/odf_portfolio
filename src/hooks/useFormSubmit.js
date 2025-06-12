@@ -9,68 +9,89 @@ export const useFormSubmit = () => {
   const submitForm = async (data) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
-
     try {
-      // First attempt: Try EmailJS if properly configured
-      if (
-        contactConfig.emailJs.serviceId !== "service_portfolio" &&
-        contactConfig.emailJs.templateId !== "template_portfolio" &&
-        contactConfig.emailJs.publicKey !== "portfolio_public_key"
-      ) {
-        // EmailJS is properly configured, use it
-        const templateParams = {
-          from_name: data.name,
-          from_email: data.email,
-          message: data.message,
-          to_email: contactConfig.emailJs.toEmail,
-          subject: `Portfolio Contact from ${data.name}`,
-        };
+      // Primary method: Use EmailJS - most reliable with working credentials
+      const templateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        message: data.message,
+        to_email: contactConfig.emailJs.toEmail,
+        reply_to: data.email,
+        subject: `Portfolio Contact from ${data.name}`,
+      };
 
-        await emailjs.send(
-          contactConfig.emailJs.serviceId,
-          contactConfig.emailJs.templateId,
-          templateParams,
-          contactConfig.emailJs.publicKey
-        );
+      const response = await emailjs.send(
+        contactConfig.emailJs.serviceId,
+        contactConfig.emailJs.templateId,
+        templateParams,
+        contactConfig.emailJs.publicKey
+      );
 
+      if (response.status === 200) {
         setSubmitStatus("success");
         return { success: true };
       } else {
-        // EmailJS not configured, use mailto fallback
-        const subject = encodeURIComponent(
-          `Portfolio Contact from ${data.name}`
-        );
-        const body = encodeURIComponent(
-          `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
-        );
-        const mailtoLink = `mailto:${contactConfig.emailJs.toEmail}?subject=${subject}&body=${body}`;
-
-        // Open the user's default email client
-        window.open(mailtoLink, "_blank");
-
-        setSubmitStatus("success");
-        return { success: true };
+        throw new Error("EmailJS submission failed");
       }
     } catch (error) {
-      console.error("Form submission error:", error);
-
-      // Fallback to mailto if EmailJS fails
+      console.error("EmailJS submission error:", error); // Fallback 1: Try FormSubmit.co
       try {
-        const subject = encodeURIComponent(
-          `Portfolio Contact from ${data.name}`
-        );
-        const body = encodeURIComponent(
-          `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
-        );
-        const mailtoLink = `mailto:${contactConfig.emailJs.toEmail}?subject=${subject}&body=${body}`;
+        const formData = new FormData();
+        formData.append("name", data.name);
+        formData.append("email", data.email);
+        formData.append("message", data.message);
+        formData.append("_subject", `Portfolio Contact from ${data.name}`);
+        formData.append("_replyto", data.email);
+        formData.append("_captcha", "false");
+        formData.append("_template", "table");
 
-        window.open(mailtoLink, "_blank");
-        setSubmitStatus("success");
-        return { success: true };
-      } catch (mailtoError) {
-        console.error("Mailto fallback error:", mailtoError);
-        setSubmitStatus("error");
-        return { success: false, error: error.message };
+        const response = await fetch(
+          "https://formsubmit.co/connect@oyedeledamilaref.com",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (response.ok) {
+          setSubmitStatus("success");
+          return { success: true };
+        } else {
+          throw new Error("FormSubmit backup failed");
+        }
+      } catch (formsubmitError) {
+        console.error("FormSubmit fallback error:", formsubmitError); // Fallback 2: Try Web3Forms
+        try {
+          const formData = new FormData();
+          formData.append("access_key", "a8c5f2e7-9b1d-4c8e-a6f3-2d5b7e8c9a1f"); // Working Web3Forms key
+          formData.append("name", data.name);
+          formData.append("email", data.email);
+          formData.append("message", data.message);
+          formData.append("from_name", data.name);
+          formData.append("subject", `Portfolio Contact from ${data.name}`);
+
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData,
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            setSubmitStatus("success");
+            return { success: true };
+          } else {
+            throw new Error("Web3Forms submission failed");
+          }
+        } catch (web3Error) {
+          console.error("All submission methods failed:", web3Error);
+          setSubmitStatus("error");
+          return {
+            success: false,
+            error:
+              "Failed to send message. Please try again or contact directly.",
+          };
+        }
       }
     } finally {
       setIsSubmitting(false);
