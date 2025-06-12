@@ -87,13 +87,6 @@ const ContactSection = () => {
       value: 'Container Registry',
       href: contactConfig.dockerhub,
       color: 'text-blue-500 dark:text-blue-300'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: contactConfig.location,
-      href: null,
-      color: 'text-green-600 dark:text-green-400'
     }
   ];
 
@@ -143,11 +136,8 @@ const ContactSection = () => {
             {contactConfig.availability.message}. 
             I'd love to hear about your project and discuss how we can bring your ideas to life.
           </motion.p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
-          <motion.div
+        </motion.div>        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Form */}          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -158,10 +148,10 @@ const ContactSection = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
               className="text-2xl font-bold text-gray-900 dark:text-white mb-6"
             >
-              Send me a message
+              Send a Message
             </motion.h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -170,34 +160,32 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.7, duration: 0.5 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
               >
-                <label 
-                  htmlFor="name" 
+                <label
+                  htmlFor="name"
                   className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                 >
                   <User className="inline w-4 h-4 mr-1" />
-                  Your Name
+                  Full Name *
                 </label>
                 <input
                   type="text"
                   id="name"
                   {...register('name', validationRules.name)}
-                  className={`w-full px-4 py-3 border rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 ${
-                    errors.name 
-                      ? 'border-red-500 focus:ring-red-500' 
+                  className={`w-full px-4 py-3 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 ${
+                    errors.name
+                      ? 'border-red-500 dark:border-red-400'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="Enter your full name"
-                  aria-invalid={errors.name ? 'true' : 'false'}
-                  aria-describedby={errors.name ? 'name-error' : undefined}
+                  placeholder="Your full name"
+                  disabled={isSubmitting}
                 />
                 {errors.name && (
                   <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    id="name-error"
-                    className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="text-red-500 text-sm mt-1 flex items-center gap-1"
                   >
                     <AlertCircle className="w-4 h-4" />
                     {errors.name.message}
@@ -210,34 +198,32 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.8, duration: 0.5 }}
+                transition={{ delay: 0.85, duration: 0.5 }}
               >
-                <label 
-                  htmlFor="email" 
+                <label
+                  htmlFor="email"
                   className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                 >
                   <Mail className="inline w-4 h-4 mr-1" />
-                  Email Address
+                  Email Address *
                 </label>
                 <input
                   type="email"
                   id="email"
                   {...register('email', validationRules.email)}
-                  className={`w-full px-4 py-3 border rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 ${
-                    errors.email 
-                      ? 'border-red-500 focus:ring-red-500' 
+                  className={`w-full px-4 py-3 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 ${
+                    errors.email
+                      ? 'border-red-500 dark:border-red-400'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
                   placeholder="your.email@example.com"
-                  aria-invalid={errors.email ? 'true' : 'false'}
-                  aria-describedby={errors.email ? 'email-error' : undefined}
+                  disabled={isSubmitting}
                 />
                 {errors.email && (
                   <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    id="email-error"
-                    className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="text-red-500 text-sm mt-1 flex items-center gap-1"
                   >
                     <AlertCircle className="w-4 h-4" />
                     {errors.email.message}
@@ -252,50 +238,39 @@ const ContactSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.9, duration: 0.5 }}
               >
-                <label 
-                  htmlFor="message" 
+                <label
+                  htmlFor="message"
                   className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                 >
                   <MessageSquare className="inline w-4 h-4 mr-1" />
-                  Your Message
+                  Message *
                 </label>
                 <textarea
                   id="message"
-                  rows={6}
+                  rows={5}
                   {...register('message', validationRules.message)}
-                  className={`w-full px-4 py-3 border rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none ${
-                    errors.message 
-                      ? 'border-red-500 focus:ring-red-500' 
+                  className={`w-full px-4 py-3 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 resize-y ${
+                    errors.message
+                      ? 'border-red-500 dark:border-red-400'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="Tell me about your project, ideas, or how I can help you..."
-                  aria-invalid={errors.message ? 'true' : 'false'}
-                  aria-describedby={errors.message ? 'message-error' : 'message-count'}
+                  placeholder="Tell me about your project or just say hello! I'd love to hear from you."
+                  disabled={isSubmitting}
                 />
-                
-                {/* Character count */}
-                <div className="mt-2 flex justify-between items-center">
+                <div className="flex justify-between items-center mt-2">
                   {errors.message ? (
                     <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      id="message-error"
-                      className="text-sm text-red-600 dark:text-red-400 flex items-center gap-1"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      className="text-red-500 text-sm flex items-center gap-1"
                     >
                       <AlertCircle className="w-4 h-4" />
                       {errors.message.message}
                     </motion.p>
                   ) : (
-                    <div></div>
+                    <div />
                   )}
-                  <span 
-                    id="message-count"
-                    className={`text-sm ${
-                      messageValue?.length > 900 
-                        ? 'text-red-500' 
-                        : 'text-gray-500 dark:text-gray-400'
-                    }`}
-                  >
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
                     {messageValue?.length || 0}/1000
                   </span>
                 </div>
@@ -306,24 +281,17 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 1.0, duration: 0.5 }}
-                className="pt-4"
+                transition={{ delay: 0.95, duration: 0.5 }}
               >
-                <motion.button
+                <button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl ${
-                    isSubmitting
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-primary-600 hover:bg-primary-700 text-white'
-                  }`}
+                  className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      Sending Message...
+                      Sending...
                     </>
                   ) : (
                     <>
@@ -331,28 +299,31 @@ const ContactSection = () => {
                       Send Message
                     </>
                   )}
-                </motion.button>
+                </button>
 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
+                {submitStatus && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 p-4 bg-green-100 dark:bg-green-900/30 border border-green-500 rounded-lg text-green-700 dark:text-green-400 flex items-center gap-2"
+                    className="mt-4"
                   >
-                    <CheckCircle className="w-5 h-5" />
-                    <span>Thank you! Your message has been sent successfully. I'll get back to you soon.</span>
-                  </motion.div>
-                )}
-
-                {submitStatus === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 p-4 bg-red-100 dark:bg-red-900/30 border border-red-500 rounded-lg text-red-700 dark:text-red-400 flex items-center gap-2"
-                  >
-                    <AlertCircle className="w-5 h-5" />
-                    <span>Sorry, there was an error sending your message. Please try again or contact me directly.</span>
+                    {submitStatus === 'success' && (
+                      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
+                        <span className="text-green-700 dark:text-green-300 font-medium">
+                          Message sent successfully! I'll get back to you soon.
+                        </span>
+                      </div>
+                    )}
+                    {submitStatus === 'error' && (
+                      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 flex items-center gap-3">
+                        <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
+                        <span className="text-red-700 dark:text-red-300 font-medium">
+                          Failed to send message. Please try again or contact me directly.
+                        </span>
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </motion.div>
@@ -365,7 +336,6 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="space-y-8"
           >
             {/* Contact Methods */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
@@ -422,27 +392,27 @@ const ContactSection = () => {
                 ))}
               </div>
             </div>
-
-            {/* Availability Status */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 1.1, duration: 0.5 }}
-              className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl shadow-lg p-8 text-white"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <h3 className="text-xl font-bold">{contactConfig.availability.status}</h3>
-              </div>
-              <p className="text-primary-100 leading-relaxed">
-                I'm always interested in discussing new opportunities, exciting projects, 
-                and potential collaborations. Whether you're looking for a senior developer 
-                for your team or need help bringing your ideas to life, let's talk!
-              </p>
-            </motion.div>
           </motion.div>
         </div>
+
+        {/* Availability Status - Full Width Below */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.1, duration: 0.6 }}
+          className="mt-12 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl shadow-lg p-8 text-white"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+            <h3 className="text-xl font-bold">{contactConfig.availability.status}</h3>
+          </div>
+          <p className="text-primary-100 leading-relaxed text-center max-w-4xl mx-auto">
+            I'm always interested in discussing new opportunities, exciting projects, 
+            and potential collaborations. Whether you're looking for a senior developer 
+            for your team or need help bringing your ideas to life, let's talk!
+          </p>
+        </motion.div>
       </div>
 
       {/* Section Divider */}
