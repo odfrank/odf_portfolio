@@ -13,8 +13,8 @@ export const contactConfig = {
   linkedin: "https://linkedin.com/in/damilare-francis-oyedele/",
   github: "https://github.com/odfrank",
   portfolio: "https://oyedeledamilaref.com",
-  stackoverflow: "https://stackoverflow.com/users/your-user-id", // Replace with your StackOverflow profile
-  dockerhub: "https://hub.docker.com/u/odfrank", // Replace with your Docker Hub username
+  stackoverflow: "https://stackoverflow.com/users/1727936/", 
+  dockerhub: "https://hub.docker.com/u/mdeecoder", // Replace with your Docker Hub username
 
   // Optional additional contact methods
   phone: null, // "+1 (555) 123-4567"
