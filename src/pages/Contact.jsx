@@ -13,7 +13,9 @@ import {
   AlertCircle,
   Loader2,
   User,
-  MessageSquare
+  MessageSquare,
+  HelpCircle,
+  Package
 } from 'lucide-react';
 import { contactConfig, validationRules } from '../config/contact';
 import { useFormSubmit } from '../hooks/useFormSubmit';
@@ -50,7 +52,6 @@ const ContactSection = () => {
       return () => clearTimeout(timer);
     }
   }, [submitStatus, resetStatus]);
-
   const contactMethods = [
     {
       icon: Mail,
@@ -72,6 +73,20 @@ const ContactSection = () => {
       value: 'Code Repository',
       href: contactConfig.github,
       color: 'text-gray-800 dark:text-gray-300'
+    },
+    {
+      icon: HelpCircle,
+      label: 'StackOverflow',
+      value: 'Q&A Contributions',
+      href: contactConfig.stackoverflow,
+      color: 'text-orange-600 dark:text-orange-400'
+    },
+    {
+      icon: Package,
+      label: 'Docker Hub',
+      value: 'Container Registry',
+      href: contactConfig.dockerhub,
+      color: 'text-blue-500 dark:text-blue-300'
     },
     {
       icon: MapPin,

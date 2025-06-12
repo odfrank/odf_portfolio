@@ -9,12 +9,13 @@ export const contactConfig = {
     templateId: "your_template_id",
     publicKey: "your_public_key",
   },
-
   // Contact information
   email: "oyedeledamilaref@yahoo.com",
   linkedin: "https://linkedin.com/in/damilare-francis-oyedele/",
   github: "https://github.com/odfrank",
   portfolio: "https://oyedeledamilaref.com",
+  stackoverflow: "https://stackoverflow.com/users/your-user-id", // Replace with your StackOverflow profile
+  dockerhub: "https://hub.docker.com/u/odfrank", // Replace with your Docker Hub username
 
   // Optional additional contact methods
   phone: null, // "+1 (555) 123-4567"
