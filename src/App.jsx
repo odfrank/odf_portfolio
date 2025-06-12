@@ -8,6 +8,7 @@ import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
             <Portfolio />
             <Contact />
           </main>
+          
+          <Footer />
           <ScrollToTop />
         </div>
       </Router>

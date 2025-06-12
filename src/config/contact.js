@@ -10,7 +10,7 @@ export const contactConfig = {
     publicKey: "your_public_key",
   },
   // Contact information
-  email: "oyedeledamilaref@yahoo.com",
+  email: "connect@oyedeledamilaref.com",
   linkedin: "https://linkedin.com/in/damilare-francis-oyedele/",
   github: "https://github.com/odfrank",
   portfolio: "https://oyedeledamilaref.com",

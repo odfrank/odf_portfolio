@@ -7,9 +7,9 @@ const SocialIcons = () => {
   const { isDark, toggleTheme } = useTheme();
 
   const socialLinks = [
-    { Icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', color: 'text-blue-500' },
-    { Icon: Github, href: 'https://github.com', label: 'GitHub', color: 'text-gray-700 dark:text-gray-300' },
-    { Icon: Youtube, href: 'https://youtube.com', label: 'YouTube', color: 'text-red-600' },
+    { Icon: Linkedin, href: 'https://linkedin.com/in/damilare-francis-oyedele/', label: 'LinkedIn', color: 'text-blue-500' },
+    { Icon: Github, href: 'https://github.com/odfrank/', label: 'GitHub', color: 'text-gray-700 dark:text-gray-300' },
+    { Icon: Youtube, href: 'https://youtube.com/@DamilareOyedele-ODF/', label: 'YouTube', color: 'text-red-600' },
   ];
 
   const iconVariants = {
